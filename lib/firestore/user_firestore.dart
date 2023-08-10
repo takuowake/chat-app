@@ -4,15 +4,26 @@ class UserFirestore {
   static final FirebaseFirestore _firebaseFirestoreInstance = FirebaseFirestore.instance;
   static final _userCollection = _firebaseFirestoreInstance.collection('user');
 
-  static Future<void> createUser() async {
+  static Future<String?> createUser() async {
     try {
-      _userCollection.add({
-        'name': 'wake',
+      final newDoc = await _userCollection.add({
+        'name': 'waketakuo',
         'image_path': 'https://cdn-images-1.medium.com/max/1200/1*ilC2Aqp5sZd1wi0CopD1Hw.png',
       });
       print('アカウント作成完了');
+      return newDoc.id;
     } catch (e) {
       print('アカウント作成失敗: $e');
+      return null;
+    }
+  }
+
+  static Future<List<QueryDocumentSnapshot>?> fetchUsers() async {
+    try {
+      final snapshot = await _userCollection.get();
+      return snapshot.docs;
+    } catch(e) {
+      print('ユーザー情報の取得失敗: $e');
     }
   }
 }
