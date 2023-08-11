@@ -12,11 +12,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await SharedPrefs.setPrefsInstance();
-  final myUid = await UserFirestore.createUser();
-  if(myUid != null) {
-    RoomFirestore.createRoom(myUid);
-    SharedPrefs.setUid(myUid);
-  }
+  String? uid = SharedPrefs.fetchUid();
+  if(uid == null) await UserFirestore.createUser();
   runApp(const MyApp());
 }
 
