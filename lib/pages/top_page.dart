@@ -13,11 +13,9 @@ class TopPage extends StatefulWidget {
 class _TopPageState extends State<TopPage> {
   List<User> userList = [
     User(name: '田中', uid: 'abc',
-        imagePath: 'https://cdn-images-1.medium.com/max/1200/1*ilC2Aqp5sZd1wi0CopD1Hw.png',
-        lastMessage: 'こんにちは'),
+        imagePath: 'https://cdn-images-1.medium.com/max/1200/1*ilC2Aqp5sZd1wi0CopD1Hw.png',),
     User(name: '佐藤', uid: 'abcd',
-        imagePath: 'https://cdn-images-1.medium.com/max/1200/1*ilC2Aqp5sZd1wi0CopD1Hw.png',
-        lastMessage: 'こんばんわ'),
+        imagePath: 'https://cdn-images-1.medium.com/max/1200/1*ilC2Aqp5sZd1wi0CopD1Hw.png',),
   ];
   @override
   Widget build(BuildContext context) {
@@ -59,7 +57,7 @@ class _TopPageState extends State<TopPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(userList[index].name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                      Text(userList[index].lastMessage, style: TextStyle(color: Colors.grey),),
+                      Text('hello', style: TextStyle(color: Colors.grey),),
                     ],
                   )
                 ],
