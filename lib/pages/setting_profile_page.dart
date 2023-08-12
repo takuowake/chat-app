@@ -79,7 +79,7 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
                 height: 200,
                 child: Image.file(image!, fit: BoxFit.cover)
             ),
-            SizedBox(height: 150,),
+            const SizedBox(height: 150,),
             SizedBox(
               width: 150,
               child: ElevatedButton(
