@@ -4,7 +4,7 @@ import 'package:intl/intl.dart' as intl;
 
 class TalkRoomPage extends StatefulWidget {
   final String name;
-  const TalkRoomPage({super.key, required this.name});
+  const TalkRoomPage(this.name, {Key? key}) : super(key: key);
 
   @override
   State<TalkRoomPage> createState() => _TalkRoomPageState();
