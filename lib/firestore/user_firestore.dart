@@ -38,6 +38,18 @@ class UserFirestore {
     }
   }
 
+  static Future<void> updateUser(User newProfile) async {
+    try {
+      String myUid = SharedPrefs.fetchUid()!;
+      await _userCollection.doc(newProfile.uid).update({
+        'name': newProfile.name,
+        'image_path': newProfile.imagePath,
+      });
+    } catch(e) {
+      print('ユーザー情報の更新失敗: $e');
+    }
+  }
+
   static Future<User?> fetchProfile(String uid) async {
     try {
       String uid = SharedPrefs.fetchUid()!;
