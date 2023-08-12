@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SettingProfilePage extends StatefulWidget {
   const SettingProfilePage({super.key});
@@ -8,6 +11,17 @@ class SettingProfilePage extends StatefulWidget {
 }
 
 class _SettingProfilePageState extends State<SettingProfilePage> {
+  File? image;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> selectImage() async {
+    XFile? pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+    if(pickedImage == null) return;
+    setState(() {
+      image = File(pickedImage.path);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +47,7 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
                     alignment: Alignment.center,
                     child: ElevatedButton(
                       onPressed: () {
-
+                        selectImage();
                       },
                       child: Text('画像を選択'),
                     ),
@@ -41,12 +55,19 @@ class _SettingProfilePageState extends State<SettingProfilePage> {
                 )
               ],
             ),
+            SizedBox(height: 30,),
+            image == null
+                ? SizedBox()
+                : SizedBox(
+              width: 200,
+                height: 200,
+                child: Image.file(image!, fit: BoxFit.cover)
+            ),
             SizedBox(height: 150,),
             SizedBox(
               width: 150,
               child: ElevatedButton(
                 onPressed: () {
-
                 },
                 child: Text('編集'),
               ),
