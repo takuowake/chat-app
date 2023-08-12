@@ -14,7 +14,6 @@ void main() async {
   await SharedPrefs.setPrefsInstance();
   String? uid = SharedPrefs.fetchUid();
   if(uid == null) await UserFirestore.createUser();
-  await RoomFirestore.fetchJoinedRooms();
   runApp(const MyApp());
 }
 
